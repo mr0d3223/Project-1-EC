@@ -1,0 +1,203 @@
+/* styles.css - Project 1 Responsive Update (Flexbox + Media Queries)
+   Small: 0-599px | Medium: 600-991px | Large: 992px+
+*/
+
+:root{
+  --maxw: 1100px;
+  --pad: 1rem;
+  --radius: 12px;
+  --shadow: 0 8px 20px rgba(0,0,0,.08);
+  --border: 1px solid rgba(0,0,0,.12);
+}
+
+*{ box-sizing: border-box; }
+html{ font-size: 16px; }
+body{
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.5;
+  color: #111;
+  background: #0897f7;
+}
+z
+img, video{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+header{
+  background: #fff;
+  border-bottom: var(--border);
+}
+
+header > h1, header > h2{
+  margin: 0;
+  padding: .4rem var(--pad);
+}
+
+header > h1{ font-size: 1.25rem; }
+header > h2{ font-size: 1rem; font-weight: 600; opacity: .85; }
+
+nav{
+  padding: .25rem var(--pad) 1rem;
+}
+
+nav ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;               /* Flexbox */
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+nav a{
+  display: inline-block;
+  padding: .55rem .8rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #111;
+  border: var(--border);
+  background: #fff;
+}
+
+nav a:hover, nav a:focus{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0,0,0,.08);
+}
+
+main{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 1.25rem var(--pad) 2rem;
+  display: flex;               /* Flexbox */
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+section, article, figure, details{
+  background: #fff;
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+
+figure{
+  margin: 0;
+}
+
+figcaption{
+  margin-top: .75rem;
+  font-size: .95rem;
+  opacity: .9;
+}
+
+h3{ margin-top: 0; }
+h4{ margin: .25rem 0 .75rem; }
+
+/* Gallery layouts (used in multiple pages) */
+.gallery{
+  display: flex;               /* Flexbox */
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.gallery > figure{
+  padding: .75rem;
+}
+
+/* Movie gallery (posters) */
+.movie-gallery{
+  display: flex;               /* Flexbox */
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.movie-gallery > figure{
+  width: 200px;   /* base card width; responsive tweaks below */
+  padding: .75rem;
+}
+
+.movie-gallery img{
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Make details content breathe */
+details > p{ margin: .75rem 0 0; }
+
+/* Footer */
+footer{
+  border-top: var(--border);
+  background: #fff;
+  padding: 1rem var(--pad);
+}
+footer p{
+  margin: 0;
+  text-align: center;
+  opacity: .85;
+}
+
+/* Center the main image on the index page */
+main img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -----------------------
+   Responsive breakpoints
+   ----------------------- */
+
+/* SMALL (phones) */
+@media (max-width: 599px){
+  header > h1{ font-size: 1.1rem; }
+  header > h2{ font-size: .95rem; }
+
+  nav ul{
+    flex-direction: column;    /* Flexbox responsiveness */
+    align-items: stretch;
+  }
+  nav a{
+    width: 100%;
+    text-align: center;
+  }
+
+  /* 1 column galleries on small screens */
+  .gallery > figure{ flex: 1 1 100%; }
+  .movie-gallery > figure{ flex: 1 1 160px; max-width: 260px; }
+
+  /* videos shrink nicely */
+  video{ width: 100%; height: auto; }
+}
+
+/* MEDIUM (tablets / small laptops) */
+@media (min-width: 600px) and (max-width: 991px){
+  nav ul{
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  /* 2 columns galleries on medium screens */
+  .gallery > figure{ flex: 1 1 calc(50% - 1rem); }
+  .movie-gallery > figure{ flex: 0 1 200px; }
+}
+
+/* LARGE (desktops) */
+@media (min-width: 992px){
+  nav ul{
+    justify-content: center;
+  }
+
+  /* 3 columns galleries on large screens */
+  .gallery > figure{ flex: 1 1 calc(33.333% - 1rem); }
+
+  /* 4 columns for movie posters when space allows */
+  .movie-gallery > figure{ flex: 0 1 200px; }
+}
